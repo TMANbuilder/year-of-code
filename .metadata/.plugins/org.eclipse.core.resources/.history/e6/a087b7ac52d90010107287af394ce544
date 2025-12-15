@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+public class CalculateTip {
+
+	private float bill_total = 0;
+	private float tip_percentage = 0;
+	private int num_guests = 0;
+	private float per_person = 0;
+	
+	public void setBillTotal(float user_value) {
+		
+		if (user_value <= 0) {
+			System.out.print("The value must be greater than 0!\n");
+		}
+		
+		this.bill_total = user_value;
+	}
+	
+	public float getBillTotal() {
+		return this.bill_total; 
+	}
+	
+	public void setTipPercentage(float user_value) {
+		
+		if (user_value < 0) {
+			System.out.print("You cannot enter a negative value!\n");
+		}
+		
+		this.tip_percentage = user_value;
+	}
+	
+	public float getTipPercentage() {
+		return this.tip_percentage; 
+	}
+	
+	public void setNumGuests(int user_value) {
+		
+		if (user_value < 0) {
+			System.out.print("You cannot enter a negative value!\n");
+		}
+		
+		if (user_value == 0) {
+			user_value = 100;
+		}
+		
+		this.num_guests = user_value;
+	}
+	
+	public int getNumGuests() {
+		return this.num_guests; 
+	}
+	
+	private void setPerPerson() {
+		
+		if (this.tip_percentage == 0) {
+			this.per_person = (bill_total / this.num_guests);
+		} else {
+			this.per_person = (bill_total * (1 + (this.tip_percentage/100))/this.num_guests);
+		}
+	}
+	
+	public float getPerPerson() {
+		return this.per_person;
+	}
+	
+	
+	public static void main(String args[]) {
+		
+		CalculateTip gathering = new CalculateTip();
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("Welcome to the 'Tip Calculator' Tool!\n");
+		
+		System.out.print("What was the bill total?\n$");
+		gathering.setBillTotal(scanner.nextFloat());
+		
+		System.out.print("How much would you like to tip (%)?\n");
+		gathering.setTipPercentage(scanner.nextFloat());
+		
+		System.out.print("How many people will be splitting the bill?\n");
+		gathering.setNumGuests(scanner.nextLine().trim());
+				
+		scanner.close();
+		
+		System.out.printf("Your band name could be: %s\n", band_name.generateBandName());
+	}
+	
+}
+
